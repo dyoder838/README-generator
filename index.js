@@ -1,5 +1,7 @@
 const fs = require("fs");
 const inquirer = require("inquirer");
+const covgen = require("covgen")
+
 
 
 inquirer.prompt([
@@ -7,12 +9,76 @@ inquirer.prompt([
         type:"input",
         name:"projectTitle",
         message:"what is the title of your project"
-    }
-    {}
+    },
+    {
+        type:"input",
+        Name: "description",
+        message: "Describe the project in detail"
+    },   
+    {
+        type:"input",
+        Name: "installation",
+        message: "What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running."
+    },   
+    {
+        type:"input",
+        Name: "usage",
+        message: "Provide instructions and examples for use."
+    },   
+    {
+        type:"input",
+        Name: "screenshot",
+        message: "Include a screenshot using standard git markup, if you have a local file, use ![Alt text](/relative/path/to/img.jpg?raw=true `Optional Title`), if you have an external file, use ![Alt text](http://full/path/to/img.jpg `Optional title`)"
+    },   
+    {
+        type:"input",
+        Name: "collaborator",
+        message: "List your collaborators, if any, by their name"
+    },   
+    {
+        type:"input",
+        Name: "collaboratorLink",
+        message: "links to your collaborators GitHub profile. in the following format: https://github.com/'github user name`"
+    },   
+    {
+        type:"input",
+        Name: "thirdPartyAsset",
+        message: "If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section. [link name](url)"
+    },   
+    {
+        type:"input",
+        Name: "tutorialCredit",
+        message: "If you followed tutorials, include links to those; name followed by [link name](url)"
+    },   
+    {
+        type:"input",
+        Name: "license",
+        message: "list a license. `xyz License`.  If you need help choosing a license, use [https://choosealicense.com/](https://choosealicense.com/) . be sure to create the LICENSE file"
+    }, 
+    {
+        type:"input",
+        Name: "gitUser",
+        message: "for badges,What is your git hub user name?"
+    },   
+    {
+        type:"input",
+        Name: "repoName",
+        message: "For badges, what is the intended repo?"
+    },   
+    {
+        type:"input",
+        Name: "test",
+        message: "Go the extra mile and write tests for your application. Then provide examples on how to run them.`"
+    },   
+    {
+        type:"input",
+        Name: "",
+        message: ""
+    },     
 ]).then(function(data){
     console.log(data)
     // function to create the readme from the template
-    
+
     //const readmeTemp = readmeTemplate(answer)
     // this takes 3 parameters; file name, content, callback function(err) 
     // fs.writeFile("generatedReadme.md", readmeTemp, function(err){
@@ -28,57 +94,71 @@ inquirer.prompt([
 
 // function to generate readme 
 function readmeTemplate(answer) {
-   `# ${answer.projectTitle}
-    
+   `# ${answer.projectTitle}                                           #### License: ![GitHub License](https://img.shields.io/github/license/${answer.gitUser}/${answer.repoName})
+                                                                                      [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-v2.0%20adopted-ff69b4.svg)](code_of_conduct.md)
+                                                                                     
     ## Description
-    what is this project?
-    ${description}
+   
+    ${answer.description}
+
+    
+    ## Table of Contents
+
+    - [Installation](#Installation)
+    - [Usage](#Usage)
+    - [Credits](#credits)
+    - [license](#license)
+    - [Badges](#Badges)
+    - [Contributing](#Contributing)
+    - [Tests](#Tests)
+    
     
     ## Installation
-
-    What are the steps required to install your project? Provide a step-by-step description of how to get the development environment running.
-    ${installation}
+    Install Contributor Covenant by executing the following commands in command terminal: npm install -g covgen; covgen "<your_email_address>"
+    ${answer.installation}
+ 
 
     ## Usage 
+  
+    ${answer.usage}
+    
+    ${answer.screenshot}
 
-    Provide instructions and examples for use. Include screenshots as needed. 
-    ${instructions}
-    ${screenshot}
-
+    
     ## Credits
 
-    List your collaborators, if any, with links to their GitHub profiles.
-    ${collaborators}
-    ${collabLinks}
+        ### Collaborators
+    
+        ${answer.collaborator} ${answer.collaboratorLink}
 
-    If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
-    ${thirdPartyAssets}
+        ### Third Party Assets
+    
+        ${answer.thirdPartyAsset}
 
-    If you followed tutorials, include links to those here as well.
-    ${tutorialCredits}
+        ### Tutorials 
+    
+        ${answer.tutorialCredit}
 
-
-
+    
     ## License
 
-    The last section of a good README is a license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, use [https://choosealicense.com/](https://choosealicense.com/)
-    ${license}
+    This project is using the standard ${answer.license}. See [LICENSE](.LICENSE) for Terms and Conditions.
 
 
     ## Badges
 
-    ![badmath](https://img.shields.io/github/languages/top/nielsenjared/badmath)
+    ![GitHub language count](https://img.shields.io/github/languages/count/${answer.gitUser}/${answer.repoName})
+    ![GitHub repo size](https://img.shields.io/github/repo-size/${answer.gitUser}/${answer.reponame})
 
-    Badges aren't _necessary_, per se, but they demonstrate street cred. Badges let other developers know that you know what you're doing. Check out the badges hosted by [shields.io](https://shields.io/). You may not understand what they all represent now, but you will in time.
-    ${badges}
-
+    
     ## Contributing
 
-    If you created an application or package and would like other developers to contribute it, you will want to add guidelines for how to do so. The [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard, but you can always write your own.
-
+    [Contributor Covenant](.CODE_OF_CONDUCT.md)
+    
+    
     ## Tests
 
-    Go the extra mile and write tests for your application. Then provide examples on how to run them.`
+    ${answers.test}`
 
 }
 
