@@ -151,7 +151,7 @@ This project is using the standard ${answer.license}. See [LICENSE](.LICENSE) fo
 ## Badges
 
 ![GitHub language count](https://img.shields.io/github/languages/count/${answer.gitUser}/${answer.repoName})
-![GitHub repo size](https://img.shields.io/github/repo-size/${answer.gitUser}/${answer.reponame})
+![GitHub repo size](https://img.shields.io/github/repo-size/${answer.gitUser}/${answer.repoName})
 
             
 ## Contributing
