@@ -29,7 +29,7 @@ To use the app. Simply type node index.js in the command line.
 You will be asked to type in a series of responses.
 After the responses are complete, the app will automatically write a `generatedReadme.md` file for you and place it in your current folder. 
 Copy and paste, or rename the file to whatever you chose.
-[Video Tutorial](https://drive.google.com/file/d/1RS2w7BqyL0rSjt8BKAJWLI-nRSY8O5cc/view?usp=sharing)
+
 ![screenshot](./assets/images/generator-screenshot.PNG?raw=true)
 
             
